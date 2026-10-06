@@ -43,7 +43,7 @@ export default function App() {
 
   const cat = structure.find((c) => c.id === route.cat);
   const tool = cat?.tools.find((t) => t.id === route.tool);
-  const title = tool?.title ?? cat?.title ?? 'Emergencias Pro';
+  const title = tool?.title ?? cat?.title ?? 'Herramienta Multiemergencias';
   const back = () => (route.tool ? go(`/${route.cat}`) : go('/'));
 
   let content;

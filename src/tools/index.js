@@ -5,6 +5,7 @@ import Fibrinolysis from './Fibrinolysis.jsx';
 import NEXUS from './NEXUS.jsx';
 import ShockIndex from './ShockIndex.jsx';
 import Burns from './Burns.jsx';
+import PediatricTrauma from './PediatricTrauma.jsx';
 import PediatricTape from './PediatricTape.jsx';
 import Apgar from './Apgar.jsx';
 import Malinas from './Malinas.jsx';
@@ -25,9 +26,10 @@ export const structure = [
     { id: 'gcs', tag: 'GCS', desc: 'Escala de coma de Glasgow', title: 'Glasgow (GCS)', comp: Glasgow },
     { id: 'fib', tag: 'tPA', desc: 'Criterios y datos a transmitir en el preaviso', title: 'Fibrinólisis (contraindicaciones)', comp: Fibrinolysis },
   ] },
-  { id: 'trauma', blurb: 'Columna cervical, shock y quemados', title: 'Trauma & Sangrado', icon: IconTrauma, color: 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300', tools: [
+  { id: 'trauma', blurb: 'Columna cervical, shock, ITP y quemados', title: 'Trauma & Sangrado', icon: IconTrauma, color: 'bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300', tools: [
     { id: 'nexus', tag: 'C-SPINE', desc: 'NEXUS y regla canadiense de columna cervical', title: 'Inmov. cervical (NEXUS / canadiense)', comp: NEXUS },
     { id: 'si', tag: 'SHOCK', desc: 'FC/TAS y SIPA pediátrico', title: 'Índice de shock (adulto / pediátrico)', comp: ShockIndex },
+    { id: 'itp', tag: 'ITP', desc: 'Índice de Trauma Pediátrico: 6 parámetros, −6 a +12', title: 'Índice de Trauma Pediátrico (ITP)', comp: PediatricTrauma },
     { id: 'burns', tag: 'SCQ', desc: 'Regla de los 9 y fluidos en quemados', title: 'Quemados (SCQ + fluidos)', comp: Burns },
   ] },
   { id: 'peds', blurb: 'Peso, Apgar y riesgo de parto', title: 'Pediatría & Parto', icon: IconBaby, color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300', tools: [

@@ -83,13 +83,13 @@ export const ScoreRow = ({ title, hint, options, value, onChange }) => (
           type="button"
           aria-pressed={value === o.v}
           onClick={() => onChange(o.v)}
-          className={`p-3 rounded-2xl text-xs font-semibold border-2 min-h-[92px] leading-snug ${
+          className={`p-3 rounded-2xl text-xs font-semibold border-2 min-h-[92px] leading-snug break-words hyphens-auto ${
             value === o.v
               ? 'border-blue-500 bg-blue-50 text-blue-950 shadow-sm dark:bg-blue-500/15 dark:text-blue-50 dark:border-blue-400'
               : 'border-slate-200 bg-white text-slate-600 shadow-sm dark:border-slate-700 dark:bg-slate-800/70 dark:text-slate-300 dark:shadow-none'
           }`}
         >
-          <span className="block text-3xl font-black mb-0.5 tabular-nums">{o.v}</span>
+          <span className="block text-3xl font-black mb-0.5 tabular-nums">{o.display ?? o.v}</span>
           {o.label}
         </button>
       ))}

@@ -51,7 +51,7 @@ export default function Gasometry() {
   if (use.ion && agHigh && hco3 < 24) delta = (agc - 12) / (24 - hco3);
 
   const rows = [];
-  const [pt, pl] = lvl(where(ph, r.ph), 'Acidemia', 'Alcalemia');
+  const [pt, pl] = lvl(where(ph, r.ph), 'Acidosis', 'Alcalosis');
   rows.push(<Row key="ph" label="pH" value={ph.toFixed(2)} refText={`${r.ph[0]} – ${r.ph[1]}`} tone={pt} chip={pl} />);
   const [ct, cl2] = lvl(where(pco2, r.pco2));
   rows.push(<Row key="co2" label={arterial ? 'PaCO₂' : 'pCO₂ venosa'} value={pco2} unit="mmHg" refText={`${r.pco2[0]} – ${r.pco2[1]} mmHg`} tone={ct} chip={cl2} />);
@@ -62,7 +62,7 @@ export default function Gasometry() {
     const [pot, pol] = po2 < 60 ? ['bad', '↓↓ Grave'] : po2 < 80 ? ['warn', '↓ Bajo'] : po2 > 100 && fio2 === 21 ? ['warn', '↑ Alto'] : ['ok', 'Normal'];
     rows.push(<Row key="po2" label="PaO₂" value={po2} unit="mmHg" refText="80 – 100 mmHg (aire ambiente; baja con la edad)" tone={pot} chip={pol} />);
     const [st, sl] = sat < 90 ? ['bad', '↓↓ Grave'] : sat < 95 ? ['warn', '↓ Bajo'] : ['ok', 'Normal'];
-    rows.push(<Row key="sat" label="SaO₂" value={sat} unit="%" refText="≥ 95 %" tone={st} chip={sl} />);
+    rows.push(<Row key="sat" label="SpO₂" value={sat} unit="%" refText="≥ 95 %" tone={st} chip={sl} />);
     const pf = Math.round(po2 / (fio2 / 100));
     const [pft, pfl] = pf > 300 ? ['ok', 'Normal'] : pf > 200 ? ['warn', '200-300'] : pf > 100 ? ['bad', '100-200'] : ['bad', '≤ 100'];
     rows.push(<Row key="pf" label={`PaO₂/FiO₂ (FiO₂ ${fio2} %)`} value={pf} refText="> 300 (normal ≈ 400-500)" tone={pft} chip={pfl} />);
@@ -115,7 +115,7 @@ export default function Gasometry() {
       {arterial && use.ox && (
         <div className="space-y-4 animate-fade-in">
           <GloveInput label="PaO₂" value={po2} min={20} max={500} step={1} fastStep={10} onChange={setPo2} unit="mmHg" />
-          <GloveInput label="SaO₂" value={sat} min={50} max={100} step={1} fastStep={5} onChange={setSat} unit="%" />
+          <GloveInput label="SpO₂" value={sat} min={50} max={100} step={1} fastStep={5} onChange={setSat} unit="%" />
           <GloveInput label="FiO₂ en el momento de la muestra" value={fio2} min={21} max={100} step={1} fastStep={10} onChange={setFio2} unit="%" />
         </div>
       )}

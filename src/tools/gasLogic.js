@@ -1,5 +1,5 @@
 // Lógica pura de interpretación ácido-base (sin React) para poder probarla.
-// Rangos de referencia. Arterial: pH 7,35-7,45 · pCO₂ 35-45 · HCO₃⁻ 22-26 · PaO₂ 80-100 · SaO₂ ≥ 95.
+// Rangos de referencia. Arterial: pH 7,35-7,45 · pCO₂ 35-45 · HCO₃⁻ 22-26 · PaO₂ 80-100 · SpO₂ ≥ 95.
 // Venosa: pH 7,32-7,42 · pCO₂ 40-50 · HCO₃⁻ 22-29. Lactato ≤ 2 mmol/L. Anion gap 8-12 mEq/L (según analizador).
 export const REF = {
   arterial: { ph: [7.35, 7.45], pco2: [35, 45], hco3: [22, 26] },
@@ -12,7 +12,7 @@ export function interpret(type, ph, pco2, hco3) {
   const r = REF[type];
   const arterial = type === 'arterial';
   const phS = where(ph, r.ph), cS = where(pco2, r.pco2), hS = where(hco3, r.hco3);
-  const steps = [`pH ${ph.toFixed(2)}: ${phS === 'low' ? 'acidemia' : phS === 'high' ? 'alcalemia' : 'dentro de rango'}.`];
+  const steps = [`pH ${ph.toFixed(2)}: ${phS === 'low' ? 'acidosis' : phS === 'high' ? 'alcalosis' : 'dentro de rango'}.`];
 
   if (phS === 'ok' && cS === 'ok' && hS === 'ok') {
     return { headline: 'Equilibrio ácido-base normal', detail: 'pH, pCO₂ y HCO₃⁻ dentro de rango.', tone: 'bg-green-600', steps };
@@ -34,7 +34,7 @@ export function interpret(type, ph, pco2, hco3) {
   if (!resp && !met) {
     steps.push('pCO₂ / HCO₃⁻ no explican el sentido del pH.');
     return {
-      headline: phS === 'ok' ? 'pH normal con pCO₂/HCO₃⁻ alterados' : `${acid ? 'Acidemia' : 'Alcalemia'} sin causa clara`,
+      headline: phS === 'ok' ? 'pH normal con pCO₂/HCO₃⁻ alterados' : `${acid ? 'Acidosis' : 'Alcalosis'} sin causa clara`,
       detail: phS === 'ok' ? 'Trastorno compensado o mixto de efectos opuestos. Valora clínica, anion gap y lactato.' : 'pH alterado con pCO₂ y HCO₃⁻ en rango: revisa la muestra (burbujas, demora, anticoagulante).',
       tone: 'bg-yellow-500', steps,
     };

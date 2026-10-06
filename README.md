@@ -1,4 +1,6 @@
-# Emergencias Pro
+# Herramienta Multiemergencias
+
+> Versión actual: gratuita. En una versión futura de pago se añadirán mejoras y el nombre llevará la coletilla «PRO».
 
 PWA de apoyo para emergencias extrahospitalarias. Instalable en Android e iOS y **100 % offline** tras la primera carga.
 

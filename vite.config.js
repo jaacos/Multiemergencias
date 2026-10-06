@@ -19,8 +19,8 @@ export default defineConfig({
       registerType: 'prompt',
       includeAssets: ['icons/*.png', 'icons/favicon.svg'],
       manifest: {
-        name: 'Emergencias Pro',
-        short_name: 'Emergencias',
+        name: 'Herramienta Multiemergencias',
+        short_name: 'Multiemergencias',
         description: 'Herramientas de apoyo para emergencias extrahospitalarias, 100% offline.',
         lang: 'es',
         start_url: './',
