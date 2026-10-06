@@ -27,4 +27,6 @@ Referencias: ERC 2025 (RCP), APLS (pediatría), ATLS 10.ª ed./ABA (quemados), R
 ## Pendiente / sugerido
 - Base GRE completa offline (hoy solo 22 sustancias).
 - JumpSTART pediátrico; RCP pediátrica/neonatal.
-- Tests automáticos de la lógica clínica.
+
+## Pruebas automáticas
+`npm test` ejecuta 21 pruebas (lógica de RCP y de interpretación ácido-base, incluidos los rangos venosos verificados). Se ejecutan también en cada despliegue; si fallan, no se publica.
