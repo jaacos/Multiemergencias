@@ -1,20 +1,62 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url("./assets/fonts/inter-latin-wght-normal.woff2") format("woff2-variations");
+}
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Escala "slate" retintada hacia azul marino: da identidad a toda la app */
+  --color-slate-50: #f4f7fb;
+  --color-slate-100: #eaf0f8;
+  --color-slate-200: #d9e2ef;
+  --color-slate-300: #bcc9dc;
+  --color-slate-400: #8c9cb6;
+  --color-slate-500: #62718c;
+  --color-slate-600: #46556f;
+  --color-slate-700: #2a3a56;
+  --color-slate-800: #17233a;
+  --color-slate-900: #0e172a;
+  --color-slate-950: #080e1c;
+}
+
 html, body, #root { min-height: 100%; }
 body {
   margin: 0;
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior-y: none;
-  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  background: #f4f7fb;
+  background-image: radial-gradient(900px 420px at 50% -120px, rgba(59, 130, 246, .10), transparent 70%);
+  background-attachment: fixed;
 }
-button { touch-action: manipulation; user-select: none; -webkit-user-select: none; }
+html.dark body {
+  background: #080e1c;
+  background-image:
+    radial-gradient(900px 460px at 50% -140px, rgba(59, 130, 246, .20), transparent 70%),
+    radial-gradient(600px 400px at 100% 100%, rgba(244, 63, 94, .07), transparent 70%);
+}
+html { color-scheme: light; }
+html.dark { color-scheme: dark; }
 
-@keyframes fadeInUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: none; } }
+button { touch-action: manipulation; user-select: none; -webkit-user-select: none; transition: transform .12s ease, background-color .15s ease, border-color .15s ease, box-shadow .15s ease; }
+button:active { transform: scale(.985); }
+button:focus-visible { outline: 3px solid rgba(96, 165, 250, .9); outline-offset: 2px; }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-.animate-fade-in-up { animation: fadeInUp .25s ease-out; }
-.animate-fade-in { animation: fadeIn .2s ease-out; }
+@keyframes pop { 0% { opacity: 0; transform: scale(.96) translateY(8px); } 100% { opacity: 1; transform: none; } }
+.animate-fade-in-up { animation: fadeInUp .28s cubic-bezier(.2, .8, .2, 1); }
+.animate-fade-in { animation: fadeIn .22s ease-out; }
+.animate-pop { animation: pop .28s cubic-bezier(.2, .8, .2, 1); }
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-in-up, .animate-fade-in, .animate-pulse { animation: none; }
+  .animate-fade-in-up, .animate-fade-in, .animate-pop, .animate-pulse { animation: none; }
+  button { transition: none; }
 }
