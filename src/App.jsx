@@ -78,7 +78,6 @@ export default function App() {
     ];
     content = (
       <div className="animate-fade-in">
-        <PwaStatus />
         <div className="text-[11px] font-extrabold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400 mb-3 px-1">Acceso rápido</div>
         <div className="grid grid-cols-3 gap-3 mb-8">
           {quick.map((q) => {
@@ -110,6 +109,7 @@ export default function App() {
           Herramienta de apoyo: no sustituye al juicio clínico ni a los protocolos de tu servicio. Revisa dosis y datos antes de actuar.
           No se almacenan datos identificativos de pacientes.
         </p>
+        <p className="text-[11px] text-slate-400 dark:text-slate-600 mt-2 text-center tabular-nums">{__APP_VERSION__}</p>
       </div>
     );
   }
@@ -135,7 +135,10 @@ export default function App() {
         )}
       </header>
 
-      <main className="max-w-xl mx-auto p-4 mt-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]">{content}</main>
+      <main className="max-w-xl mx-auto p-4 mt-2 pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))]">
+        <PwaStatus home={!cat && !tool} quiet={cprActive(cpr)} />
+        {content}
+      </main>
     </div>
   );
 }

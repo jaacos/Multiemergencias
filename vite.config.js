@@ -2,9 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
+import pkg from './package.json' with { type: 'json' };
+
+const build = (process.env.GITHUB_SHA || 'local').slice(0, 7);
 
 export default defineConfig({
   base: './',
+  define: {
+    __APP_VERSION__: JSON.stringify(`v${pkg.version} · ${build}`),
+  },
   plugins: [
     react(),
     tailwindcss(),
